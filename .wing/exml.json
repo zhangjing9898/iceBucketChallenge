@@ -3,5 +3,10 @@
         "path": "startScene.ts",
         "class": "startScene",
         "parentPath": ""
+    },
+    "169d79a9570": {
+        "path": "Game.ts",
+        "class": "Game",
+        "parentPath": ""
     }
 }
