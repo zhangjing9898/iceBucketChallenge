@@ -24,7 +24,7 @@ var startScene = (function (_super) {
         var _this = this;
         this.height = this.stage.stageHeight;
         this.btn_Start.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
-            // this.parent
+            _this.parent.addChild(new Game());
             _this.parent.removeChild(_this);
         }, this);
     };
