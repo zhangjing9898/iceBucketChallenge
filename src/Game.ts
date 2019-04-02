@@ -33,7 +33,6 @@ class Game extends eui.Component implements  eui.UIComponent {
 		let s = setInterval(() => {
 			if(this.time > 0) {
 				this.time --;
-				console.log('time', this.time);
 				this.timeDownTXT.text = this.time.toString();
 			} else {
 				clearInterval(s);
@@ -72,7 +71,6 @@ class Game extends eui.Component implements  eui.UIComponent {
 		// 随机 in 9groups
 		let ran = Math.floor(Math.random() * this.group.numChildren);
 		let g: eui.Group = <eui.Group>this.group.getChildAt(ran);
-		console.log('peopleChange g', g);
 		for (let i = 0; i < this.group.numChildren; i++) {
 			// 如果随机到的group中，没有人物image，那么就创建一个
 			if (g.numChildren < 4) {
@@ -85,7 +83,6 @@ class Game extends eui.Component implements  eui.UIComponent {
 					g.addChild(img);
 					// 设置遮罩
 					img.mask = g.getChildAt(0);
-					console.log('peopleImg', img);
 					// 将人物图片放到遮罩图片下方，然后让其缓动到上方
 					img.y += img.height;
 					// 缓动

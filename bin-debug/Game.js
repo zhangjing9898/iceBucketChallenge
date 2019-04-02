@@ -34,7 +34,6 @@ var Game = (function (_super) {
         var s = setInterval(function () {
             if (_this.time > 0) {
                 _this.time--;
-                console.log('time', _this.time);
                 _this.timeDownTXT.text = _this.time.toString();
             }
             else {
@@ -68,7 +67,6 @@ var Game = (function (_super) {
         // 随机 in 9groups
         var ran = Math.floor(Math.random() * this.group.numChildren);
         var g = this.group.getChildAt(ran);
-        console.log('peopleChange g', g);
         var _loop_1 = function (i) {
             // 如果随机到的group中，没有人物image，那么就创建一个
             if (g.numChildren < 4) {
@@ -81,7 +79,6 @@ var Game = (function (_super) {
                     g.addChild(img_1);
                     // 设置遮罩
                     img_1.mask = g.getChildAt(0);
-                    console.log('peopleImg', img_1);
                     // 将人物图片放到遮罩图片下方，然后让其缓动到上方
                     img_1.y += img_1.height;
                     // 缓动
