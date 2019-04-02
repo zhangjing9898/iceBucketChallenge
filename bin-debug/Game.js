@@ -13,8 +13,9 @@ var Game = (function (_super) {
     function Game() {
         var _this = _super.call(this) || this;
         _this.tongNum = 0;
-        _this.time = 5;
+        _this.time = 120;
         _this.accelerator = 120;
+        _this.personTweenTime = 1000;
         // 出现的速度
         _this.speed = 1;
         _this.count = 0;
@@ -85,18 +86,18 @@ var Game = (function (_super) {
                     var tw_1 = egret.Tween.get(img_1)
                         .to({
                         y: img_1.y - img_1.height
-                    }, 500)
+                    }, this_1.personTweenTime)
                         .to({
                         y: img_1.y
-                    }, 500)
+                    }, this_1.personTweenTime)
                         .call(function () {
                         // 缓动完，将group 隐藏
                         _this.group.getChildAt(i).visible = false;
                         // 人物图片复位
                         img_1.y -= img_1.height;
                         // 将图片隐藏
+                        g.getChildAt(1).visible = false;
                         g.getChildAt(2).visible = false;
-                        g.getChildAt(3).visible = false;
                         // remove 监听
                         // 从group中delete人物img
                         g.removeChild(img_1);
@@ -112,8 +113,8 @@ var Game = (function (_super) {
                         img_1.touchEnabled = false;
                         _this.tongNum++;
                         GameUtil.Constant.score++;
+                        g.getChildAt(1).visible = true;
                         g.getChildAt(2).visible = true;
-                        g.getChildAt(3).visible = true;
                         _this.tongNumTXT.text = _this.tongNum.toString();
                         // 替换为对应被浇水后的img
                         img_1.texture = RES.getRes(GameUtil.peopleEnemyWet[random_1]);

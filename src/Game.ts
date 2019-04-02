@@ -7,8 +7,9 @@ class Game extends eui.Component implements  eui.UIComponent {
 	public tongNum = 0;
 
 	public timeDownTXT: eui.Label;
-	private time = 5;
+	private time = 120;
 	private accelerator = 120;
+	private personTweenTime = 1000;
 
 	public constructor() {
 		super();
@@ -89,18 +90,18 @@ class Game extends eui.Component implements  eui.UIComponent {
 					let tw = egret.Tween.get(img)
 										.to({
 											y:img.y - img.height
-										}, 500)
+										}, this.personTweenTime)
 										.to({
 											y: img.y
-										}, 500)
+										}, this.personTweenTime)
 										.call(() => {
 											// 缓动完，将group 隐藏
 											this.group.getChildAt(i).visible = false;
 											// 人物图片复位
 											img.y -= img.height;
 											// 将图片隐藏
+											g.getChildAt(1).visible = false;
 											g.getChildAt(2).visible = false;
-											g.getChildAt(3).visible = false;
 											// remove 监听
 											// 从group中delete人物img
 											g.removeChild(img);
@@ -116,8 +117,8 @@ class Game extends eui.Component implements  eui.UIComponent {
 						img.touchEnabled = false;
 						this.tongNum++;
 						GameUtil.Constant.score++;
+						g.getChildAt(1).visible = true;
 						g.getChildAt(2).visible = true;
-						g.getChildAt(3).visible = true;
 						this.tongNumTXT.text = this.tongNum.toString();
 						// 替换为对应被浇水后的img
 						img.texture = RES.getRes(GameUtil.peopleEnemyWet[random]);
