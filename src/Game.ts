@@ -7,7 +7,8 @@ class Game extends eui.Component implements  eui.UIComponent {
 	public tongNum = 0;
 
 	public timeDownTXT: eui.Label;
-	private time = 120;
+	private time = 30;
+	private accelerator = 120;
 
 	public constructor() {
 		super();
@@ -32,6 +33,7 @@ class Game extends eui.Component implements  eui.UIComponent {
 		let s = setInterval(() => {
 			if(this.time > 0) {
 				this.time --;
+				console.log('time', this.time);
 				this.timeDownTXT.text = this.time.toString();
 			} else {
 				clearInterval(s);
@@ -50,7 +52,7 @@ class Game extends eui.Component implements  eui.UIComponent {
 	// 控制人物出现速度 + 判断游戏是否结束
 	private update(): boolean {
 		this.count++;
-		if(this.count === Math.floor(this.time / this.speed)) {
+		if(this.count === Math.floor(this.accelerator / this.speed)) {
 			this.peopleChange();
 			this.count = 0;
 			this.speed += 0.05;
@@ -59,7 +61,8 @@ class Game extends eui.Component implements  eui.UIComponent {
 		// 判断游戏是否结束
 		if (this.time <= 0) {
 			// TODO: new gameover
-			egret.startTick(this.update, this);
+			egret.stopTick(this.update, this);
+			console.log('游戏结束')
 			this.parent.removeChild(this);
 		}
 		return false;
@@ -99,14 +102,14 @@ class Game extends eui.Component implements  eui.UIComponent {
 											this.group.getChildAt(i).visible = false;
 											// 人物图片复位
 											img.y -= img.height;
-											// 从group中delete人物img
-											g.removeChild(img);
-											// remove 监听
-											img.removeEventListener(egret.TouchEvent.TOUCH_TAP, () => {}, this);
-											egret.Tween.removeTweens(img);
 											// 将图片隐藏
 											g.getChildAt(2).visible = false;
 											g.getChildAt(3).visible = false;
+											// remove 监听
+											// 从group中delete人物img
+											g.removeChild(img);
+											img.removeEventListener(egret.TouchEvent.TOUCH_TAP, () => {}, this);
+											egret.Tween.removeTweens(img);
 										});
 					// 人物图片click处理
 					img.touchEnabled = true;

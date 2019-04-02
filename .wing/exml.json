@@ -8,5 +8,10 @@
         "path": "Game.ts",
         "class": "Game",
         "parentPath": ""
+    },
+    "169dbbb0ff3": {
+        "path": "gameOver.ts",
+        "class": "gameOver",
+        "parentPath": ""
     }
 }

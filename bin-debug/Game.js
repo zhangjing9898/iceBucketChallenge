@@ -13,7 +13,8 @@ var Game = (function (_super) {
     function Game() {
         var _this = _super.call(this) || this;
         _this.tongNum = 0;
-        _this.time = 120;
+        _this.time = 30;
+        _this.accelerator = 120;
         // 出现的速度
         _this.speed = 1;
         _this.count = 0;
@@ -33,6 +34,7 @@ var Game = (function (_super) {
         var s = setInterval(function () {
             if (_this.time > 0) {
                 _this.time--;
+                console.log('time', _this.time);
                 _this.timeDownTXT.text = _this.time.toString();
             }
             else {
@@ -47,7 +49,7 @@ var Game = (function (_super) {
     // 控制人物出现速度 + 判断游戏是否结束
     Game.prototype.update = function () {
         this.count++;
-        if (this.count === Math.floor(this.time / this.speed)) {
+        if (this.count === Math.floor(this.accelerator / this.speed)) {
             this.peopleChange();
             this.count = 0;
             this.speed += 0.05;
@@ -55,7 +57,8 @@ var Game = (function (_super) {
         // 判断游戏是否结束
         if (this.time <= 0) {
             // TODO: new gameover
-            egret.startTick(this.update, this);
+            egret.stopTick(this.update, this);
+            console.log('游戏结束');
             this.parent.removeChild(this);
         }
         return false;
@@ -95,14 +98,14 @@ var Game = (function (_super) {
                         _this.group.getChildAt(i).visible = false;
                         // 人物图片复位
                         img_1.y -= img_1.height;
-                        // 从group中delete人物img
-                        g.removeChild(img_1);
-                        // remove 监听
-                        img_1.removeEventListener(egret.TouchEvent.TOUCH_TAP, function () { }, _this);
-                        egret.Tween.removeTweens(img_1);
                         // 将图片隐藏
                         g.getChildAt(2).visible = false;
                         g.getChildAt(3).visible = false;
+                        // remove 监听
+                        // 从group中delete人物img
+                        g.removeChild(img_1);
+                        img_1.removeEventListener(egret.TouchEvent.TOUCH_TAP, function () { }, _this);
+                        egret.Tween.removeTweens(img_1);
                     });
                     // 人物图片click处理
                     img_1.touchEnabled = true;

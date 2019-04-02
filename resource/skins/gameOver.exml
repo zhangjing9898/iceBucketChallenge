@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="gameOverSkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="169dbbb0ff3" ></w:Config>
+	<e:Image source="board2_png" left="0" top="0"/>
+	<e:Button id="btnPlayAgain" label="" x="115.33" y="0" width="413.64" height="86.36" alpha="0"/>
+	<e:Button id="btnFenXiang" label="" x="115.33" y="0" width="413.64" height="86.36" alpha="0"/>
+	<e:Label text="得分:" x="158" y="0" size="60" width="210" height="105" verticalAlign="middle" textAlign="center"/>
+	<e:Label id="scoreText" text="" x="286.33" y="0" textColor="0xff0000" size="80" width="210" height="135.3" verticalAlign="middle" textAlign="center"/>
+</e:Skin>
