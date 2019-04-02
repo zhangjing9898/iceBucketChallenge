@@ -7,7 +7,7 @@ class Game extends eui.Component implements  eui.UIComponent {
 	public tongNum = 0;
 
 	public timeDownTXT: eui.Label;
-	private time = 30;
+	private time = 5;
 	private accelerator = 120;
 
 	public constructor() {
@@ -60,9 +60,8 @@ class Game extends eui.Component implements  eui.UIComponent {
 
 		// 判断游戏是否结束
 		if (this.time <= 0) {
-			// TODO: new gameover
 			egret.stopTick(this.update, this);
-			console.log('游戏结束')
+			this.parent.addChild(new gameOver());
 			this.parent.removeChild(this);
 		}
 		return false;

@@ -18,6 +18,17 @@ var gameOver = (function (_super) {
     };
     gameOver.prototype.childrenCreated = function () {
         _super.prototype.childrenCreated.call(this);
+        this.init();
+    };
+    gameOver.prototype.init = function () {
+        var _this = this;
+        this.height = this.stage.stageHeight;
+        this.scoreText.text = GameUtil.Constant.score.toString();
+        this.btnPlayAgain.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
+            _this.parent.addChild(new Game());
+            GameUtil.Constant.score = 0;
+            _this.parent.removeChild(_this);
+        }, this);
     };
     return gameOver;
 }(eui.Component));

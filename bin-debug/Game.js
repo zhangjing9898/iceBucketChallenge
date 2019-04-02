@@ -13,7 +13,7 @@ var Game = (function (_super) {
     function Game() {
         var _this = _super.call(this) || this;
         _this.tongNum = 0;
-        _this.time = 30;
+        _this.time = 5;
         _this.accelerator = 120;
         // 出现的速度
         _this.speed = 1;
@@ -56,9 +56,8 @@ var Game = (function (_super) {
         }
         // 判断游戏是否结束
         if (this.time <= 0) {
-            // TODO: new gameover
             egret.stopTick(this.update, this);
-            console.log('游戏结束');
+            this.parent.addChild(new gameOver());
             this.parent.removeChild(this);
         }
         return false;
