@@ -13,7 +13,7 @@ var Game = (function (_super) {
     function Game() {
         var _this = _super.call(this) || this;
         _this.tongNum = 0;
-        _this.time = 120;
+        _this.time = 30;
         _this.accelerator = 120;
         _this.personTweenTime = 1000;
         // 出现的速度
@@ -74,10 +74,13 @@ var Game = (function (_super) {
                 if (ran === i) {
                     // 在三张人物图片中随机一张
                     var random_1 = Math.floor(Math.random() * 3);
+                    // 随机到的这个group 设置为可显示 
                     this_1.group.getChildAt(i).visible = true;
-                    // 创建人物图片
+                    // 创建对应人物图片
                     var img_1 = new egret.Bitmap(RES.getRes(GameUtil.peopleEnemy[random_1]));
                     g.addChild(img_1);
+                    // console.table(g.getChildAt(0));
+                    // img.mask = circle;
                     // 设置遮罩
                     img_1.mask = g.getChildAt(0);
                     // 将人物图片放到遮罩图片下方，然后让其缓动到上方

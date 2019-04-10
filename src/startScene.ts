@@ -21,6 +21,7 @@ class startScene extends eui.Component implements  eui.UIComponent {
 	private Init() {
 		this.height = this.stage.stageHeight;
 		this.btn_Start.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
+			// alert('进入游戏~');
 			this.parent.addChild(new Game());
 			this.parent.removeChild(this);
 		}, this);

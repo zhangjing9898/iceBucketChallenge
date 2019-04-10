@@ -7,7 +7,7 @@ class Game extends eui.Component implements  eui.UIComponent {
 	public tongNum = 0;
 
 	public timeDownTXT: eui.Label;
-	private time = 120;
+	private time = 30;
 	private accelerator = 120;
 	private personTweenTime = 1000;
 
@@ -78,10 +78,14 @@ class Game extends eui.Component implements  eui.UIComponent {
 				if (ran === i) {
 					// 在三张人物图片中随机一张
 					let random = Math.floor(Math.random() * 3);
+					// 随机到的这个group 设置为可显示 
 					this.group.getChildAt(i).visible = true;
-					// 创建人物图片
+					// 创建对应人物图片
 					let img: egret.Bitmap = new egret.Bitmap(RES.getRes(GameUtil.peopleEnemy[random]));
 					g.addChild(img);
+
+					// console.table(g.getChildAt(0));
+					// img.mask = circle;
 					// 设置遮罩
 					img.mask = g.getChildAt(0);
 					// 将人物图片放到遮罩图片下方，然后让其缓动到上方
